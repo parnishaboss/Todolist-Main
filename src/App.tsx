@@ -48,6 +48,14 @@ const App = () => {
             setTasksObj({...tasksObj})
         }
     }
+    let changeTaskTitle = (taskID: string, newTitle:string, todolistId: string) => {
+        let tasks = tasksObj[todolistId];
+        let task = tasks.find(t => t.id === taskID)
+        if (task) {
+            task.title = newTitle;
+            setTasksObj({...tasksObj})
+        }
+    }
     let removeTodolist = (todolistId: string) => {
         let filteredTodolist = todolists.filter(tl => tl.id !== todolistId)
         setTodolists(filteredTodolist)
@@ -110,6 +118,7 @@ const App = () => {
                         changeFilter={changeFilter}
                         addTask={addTask}
                         changeTaskStatus={changeStatus}
+                        changeTaskTitle={changeTaskTitle}
                         filter={tl.filter}
                         removeTodolist={removeTodolist}
                     />
